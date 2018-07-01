@@ -36,4 +36,3 @@ $url = $_SERVER['QUERY_STRING'];
 
 $router->dispatch($url);
 
-include_once 'footer.php';
