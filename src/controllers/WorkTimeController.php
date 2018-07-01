@@ -160,6 +160,17 @@ class WorkTimeController extends MainController {
 				$setParameters['sunday_bonus'] = $sundayBonusValue;
 			}
 
+			if ( count($setParameters) === 0 ) {
+				echo json_encode([
+					'type'      => 'error',
+					'message'   => 'Nincs frissítendő adat!',
+					'data'      => [
+						'affectedRows' => 0
+					]
+				]);
+				exit;
+			}
+
 			$affectedRows = $workTime->update($setParameters, $wt_id);
 
 			echo json_encode([
