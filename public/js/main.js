@@ -256,9 +256,15 @@ import '../css/style.scss';
         }).done((response) => {
             response = JSON.parse(response);
             if ( response.hasOwnProperty('type') === true && response.type === 'success' ){
-                $($row).fadeOut(2000).remove();
+                $($row).addClass('selectedRow bg-danger text-white');
+                setTimeout( () => {
+                    DATA_TABLE.row('tr.selectedRow').remove().draw( false );
+                    showAjaxResult(response.type, response.message);
+                }, 1000 )
+            }else{
+                showAjaxResult(response.type, response.message);
             }
-            showAjaxResult(response.type, response.message);
+
         }).fail((error) => {
             console.log(error);
         });
